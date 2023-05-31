@@ -51,3 +51,5 @@ jobs:
         with:
           resourceGroupName: ${{ secrets.AZURE_RG }} 
           dataFactoryName: ${{ secrets.AZURE_DATA_FACTORY }} 
+          
+          
