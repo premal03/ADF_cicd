@@ -16,7 +16,13 @@ jobs:
     name: 'This deploys to Production'
     steps:
     - uses: actions/checkout@v3
-
+    - name: Install Azure CLI
+      run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          
+    - name: Azure CLI Login
+      run: |
+          az login --service-principal --username ${{ secrets.clientId }} --password ${{ secrets.clientSecret }} --tenant ${{ secrets.tenantId }}
     - name: Azure Login
       uses: Azure/login@v1.4.3
       with:
