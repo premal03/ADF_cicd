@@ -16,6 +16,9 @@ jobs:
     name: 'This deploys to Production'
     steps:
     - uses: actions/checkout@v3
+    - name: credentials
+      run: echo ${{ secrets.AZURE_CREDENTIALS }}
+    
     - name: Install Azure CLI
       run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -23,14 +26,8 @@ jobs:
     - name: Azure CLI Login
       run: |
           az login --service-principal --username ${{ secrets.clientId }} --password ${{ secrets.clientSecret }} --tenant ${{ secrets.tenantId }}
-    - name: Azure Login
-      uses: Azure/login@v1.4.3
-      with:
-        # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - name: credentials
-      run: echo ${{ secrets.AZURE_CREDENTIALS }}
+    
         
     - name: Deploy Azure Resource Manager (ARM) Template
       uses: Azure/arm-deploy@v1.0.6
