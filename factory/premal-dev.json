@@ -1,0 +1,9 @@
+{
+	"name": "premal-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8d6ef561-4888-4de7-9862-17fba47640ef",
+		"tenantId": "a3598e3c-5935-4cc7-b73c-165e5a61d9b1"
+	}
+}
