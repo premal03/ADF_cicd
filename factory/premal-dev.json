@@ -2,7 +2,7 @@
 	"name": "premal-dev",
 	"properties": {
 		"globalParameters": {
-			"dbname": {
+			"db_name": {
 				"type": "string",
 				"value": "data_project"
 			},
