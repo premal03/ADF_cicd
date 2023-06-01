@@ -3,7 +3,7 @@ name: Deploy ARM template to Azure Data Factory
 on:
   push:
     branches:
-      - adf_dev
+      - adf-dev
 
 jobs:
   build:
