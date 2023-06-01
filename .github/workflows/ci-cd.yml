@@ -1,4 +1,4 @@
-name: Deploy ARM template to Azure Data Factory
+name: ADF Deployment Workflow
 
 on:
   push:
@@ -6,51 +6,36 @@ on:
       - adf_publish
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Validate ARM template
-        uses: Azure/data-factory-validate-action@v1.1.5
-        with:
-          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resource_group_name: ${{ secrets.AZURE_RG }}  
-
-      - name: Export Azure Data Factory
-        id: export
-        uses: Azure/data-factory-export-action@v1.2.0
-        with:
-          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resource_group_name: ${{ secrets.AZURE_RG }} 
-      
-      - name: Publish ARM template
-        uses: actions/upload-artifact@v2
-        with:
-          name: adf-armtemplate
-          path: ${{ steps.export.outputs.arm-template-directory }}
-          if-no-files-found: error
-  
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check Azure CLI installation
-        run: az --version
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Azure CLI
+        uses: azure/setup-az-cli@v1
+
       - name: Login via Az module
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           enable-AzPSSession: true 
-     
-      - name: Download ARM template
-        uses: actions/download-artifact@v3.0.0
-        with:
-          name: ARMTemplateForFactory
 
-      - name: Deploy resources
-        uses: Azure/data-factory-deploy-action@v1.2.0
-        with:
-          resourceGroupName: ${{ secrets.AZURE_RG }} 
-          dataFactoryName: ${{ secrets.AZURE_DATA_FACTORY }} 
-          
+      - name: Get Azure subscription details
+        run: az account show --query "{subscriptionId:id, tenantId:tenantId}" -o json
+        id: get_sub_details
+        env:
+          AZURE_HTTP_USER_AGENT: "GITHUBACTIONS_${{ github.action }}"
+
+      - name: Set Azure subscription
+        run: az account set --subscription ${{ steps.get_sub_details.outputs.subscriptionId }}
+
+      - name: Download ARM template
+        run: |
+          mkdir -p arm-template
+          az resource export --ids ${{ secrets.AZURE_SOURCE_DATA_FACTORY_ID }} --api-version 2018-06-01 --resource-type "Microsoft.DataFactory/factories" --file "arm-template/factory.json"
+
+      - name: Deploy to target Azure Data Factory
+        run: |
+          az deployment group create --resource-group ${{ secrets.AZURE_TARGET_RESOURCE_GROUP }} --template-file "arm-template/factory.json" --parameters "arm-template/parameters.json" --name "premal-prod" --verbose
