@@ -6,7 +6,7 @@ on:
       - adf_publish
 defaults:
  run:
-  working-directory: ./premal-dev
+  working-directory: premal-dev
 
 jobs:
   build:
