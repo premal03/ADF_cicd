@@ -35,6 +35,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check Azure CLI installation
+        run: az --version
       - name: Login via Az module
         uses: azure/login@v1
         with:
