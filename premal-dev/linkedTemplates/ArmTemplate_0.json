@@ -18,12 +18,60 @@
 		"AzurePostgreSql1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		},
+		"default_properties_db_name_value": {
+			"type": "string",
+			"defaultValue": "data_project"
+		},
+		"default_properties_db_username_value": {
+			"type": "string",
+			"defaultValue": "sculptsoft"
+		},
+		"default_properties_db_password_value": {
+			"type": "string",
+			"defaultValue": "Prash@131"
+		},
+		"default_properties_db_host_value": {
+			"type": "string",
+			"defaultValue": "data-analytics-test.postgres.database.azure.com"
+		},
+		"default_properties_output_table_value": {
+			"type": "string",
+			"defaultValue": "dev_envtest"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"db_name": {
+					"type": "string",
+					"value": "[parameters('default_properties_db_name_value')]"
+				},
+				"db_username": {
+					"type": "string",
+					"value": "[parameters('default_properties_db_username_value')]"
+				},
+				"db_password": {
+					"type": "string",
+					"value": "[parameters('default_properties_db_password_value')]"
+				},
+				"db_host": {
+					"type": "string",
+					"value": "[parameters('default_properties_db_host_value')]"
+				},
+				"output_table": {
+					"type": "string",
+					"value": "[parameters('default_properties_output_table_value')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1Dev')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -73,6 +121,57 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzurePostgreSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzurePostgreSql1",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"db_host": {
+							"value": "@dataset().db_host",
+							"type": "Expression"
+						},
+						"db_name": {
+							"value": "@dataset().db_name",
+							"type": "Expression"
+						},
+						"db_username": {
+							"value": "@dataset().db_username",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"db_host": {
+						"type": "String"
+					},
+					"db_name": {
+						"type": "String"
+					},
+					"db_username": {
+						"type": "String"
+					},
+					"output_table": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzurePostgreSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"table": {
+						"value": "@dataset().output_table",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzurePostgreSql1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
@@ -148,57 +247,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1Dev')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzurePostgreSqlTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzurePostgreSql1",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"db_host": {
-							"value": "@dataset().db_host",
-							"type": "Expression"
-						},
-						"db_name": {
-							"value": "@dataset().db_name",
-							"type": "Expression"
-						},
-						"db_username": {
-							"value": "@dataset().db_username",
-							"type": "Expression"
-						}
-					}
-				},
-				"parameters": {
-					"db_host": {
-						"type": "String"
-					},
-					"db_name": {
-						"type": "String"
-					},
-					"db_username": {
-						"type": "String"
-					},
-					"output_table": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"type": "AzurePostgreSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"table": {
-						"value": "@dataset().output_table",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzurePostgreSql1')]"
 			]
 		},
 		{
