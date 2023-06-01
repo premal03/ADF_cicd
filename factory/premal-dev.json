@@ -5,6 +5,10 @@
 			"dbname": {
 				"type": "string",
 				"value": "data_project"
+			},
+			"db_username": {
+				"type": "string",
+				"value": "scultpsoft"
 			}
 		}
 	},
