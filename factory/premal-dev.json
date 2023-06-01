@@ -9,6 +9,10 @@
 			"db_username": {
 				"type": "string",
 				"value": "scultpsoft"
+			},
+			"db_password": {
+				"type": "string",
+				"value": "Prash@131"
 			}
 		}
 	},
