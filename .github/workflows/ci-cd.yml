@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@adf-dev
+        with:
+          ref: adf-dev
 
       - name: Run a command in the new root directory
         run: |
