@@ -1,0 +1,46 @@
+{
+	"name": "AzurePostgreSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzurePostgreSql1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"db_host": {
+					"value": "@dataset().db_host",
+					"type": "Expression"
+				},
+				"db_name": {
+					"value": "@dataset().db_name",
+					"type": "Expression"
+				},
+				"db_username": {
+					"value": "@dataset().db_username",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"db_host": {
+				"type": "String"
+			},
+			"db_name": {
+				"type": "String"
+			},
+			"db_username": {
+				"type": "String"
+			},
+			"output_table": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().output_table",
+				"type": "Expression"
+			}
+		}
+	}
+}

@@ -27,15 +27,10 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
+						"type": "AzurePostgreSQLSink",
+						"writeBatchSize": 1000000,
+						"writeBatchTimeout": "00:30:00",
+						"writeMethod": "CopyCommand"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -55,8 +50,22 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
+						"referenceName": "AzurePostgreSqlTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"db_host": {
+								"value": "@pipeline().globalParameters.db_host",
+								"type": "Expression"
+							},
+							"db_name": {
+								"value": "@pipeline().globalParameters.db_name",
+								"type": "Expression"
+							},
+							"db_username": {
+								"value": "@pipeline().globalParameters.db_username",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
