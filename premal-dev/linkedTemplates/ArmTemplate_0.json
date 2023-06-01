@@ -38,6 +38,10 @@
 		"default_properties_output_table_value": {
 			"type": "string",
 			"defaultValue": "dev_envtest"
+		},
+		"default_properties_example_value": {
+			"type": "string",
+			"defaultValue": "example"
 		}
 	},
 	"variables": {
@@ -68,6 +72,10 @@
 				"output_table": {
 					"type": "string",
 					"value": "[parameters('default_properties_output_table_value')]"
+				},
+				"example": {
+					"type": "string",
+					"value": "[parameters('default_properties_example_value')]"
 				}
 			},
 			"dependsOn": []

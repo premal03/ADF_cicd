@@ -18,5 +18,9 @@
 	"output_table": {
 		"type": "string",
 		"value": "dev_envtest"
+	},
+	"example": {
+		"type": "string",
+		"value": "example"
 	}
 }

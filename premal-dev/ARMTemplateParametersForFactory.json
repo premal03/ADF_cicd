@@ -28,6 +28,9 @@
 		},
 		"default_properties_output_table_value": {
 			"value": "dev_envtest"
+		},
+		"default_properties_example_value": {
+			"value": "example"
 		}
 	}
 }
