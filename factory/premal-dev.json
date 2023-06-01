@@ -17,6 +17,10 @@
 			"db_host": {
 				"type": "string",
 				"value": "data-analytics-test.postgres.database.azure.com"
+			},
+			"output_table": {
+				"type": "string",
+				"value": "dev_envtest"
 			}
 		}
 	},
