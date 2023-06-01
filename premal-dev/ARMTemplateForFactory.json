@@ -14,6 +14,10 @@
 		"AzureBlobStorage2Dev_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2Dev'"
+		},
+		"AzurePostgreSql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
 		}
 	},
 	"variables": {
@@ -51,19 +55,100 @@
 								}
 							},
 							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
+								"type": "AzurePostgreSQLSink",
+								"writeBatchSize": 1000000,
+								"writeBatchTimeout": "00:30:00",
+								"writeMethod": "CopyCommand"
 							},
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "id",
+											"type": "Int32",
+											"physicalType": "integer"
+										}
+									},
+									{
+										"source": {
+											"name": "applicant_id",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "applicant_id",
+											"type": "Int32",
+											"physicalType": "integer"
+										}
+									},
+									{
+										"source": {
+											"name": "firstname",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "firstname",
+											"type": "String",
+											"physicalType": "character varying"
+										}
+									},
+									{
+										"source": {
+											"name": "lastname",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "lastname",
+											"type": "String",
+											"physicalType": "character varying"
+										}
+									},
+									{
+										"source": {
+											"name": "joiningdate",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "joiningdate",
+											"type": "String",
+											"physicalType": "character varying"
+										}
+									},
+									{
+										"source": {
+											"name": "resign date",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "resign_date",
+											"type": "String",
+											"physicalType": "character varying"
+										}
+									},
+									{
+										"source": {
+											"name": "email",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "email",
+											"type": "String",
+											"physicalType": "character varying"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -80,9 +165,26 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DelimitedText1",
+								"referenceName": "AzurePostgreSqlTable1",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"db_host": {
+										"value": "@pipeline().globalParameters.db_host",
+										"type": "Expression"
+									},
+									"db_name": {
+										"value": "@pipeline().globalParameters.db_name",
+										"type": "Expression"
+									},
+									"db_username": {
+										"value": "@pipeline().globalParameters.db_username",
+										"type": "Expression"
+									},
+									"output_table": {
+										"value": "@pipeline().globalParameters.output_table",
+										"type": "Expression"
+									}
+								}
 							}
 						]
 					}
@@ -95,7 +197,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DelimitedText2Source')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]"
+				"[concat(variables('factoryId'), '/datasets/AzurePostgreSqlTable1')]"
 			]
 		},
 		{
@@ -143,6 +245,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
+					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
 				"schema": [
@@ -198,6 +301,81 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzurePostgreSql1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"db_host": {
+						"type": "String"
+					},
+					"db_name": {
+						"type": "String"
+					},
+					"db_username": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzurePostgreSql",
+				"typeProperties": {
+					"connectionString": "[parameters('AzurePostgreSql1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzurePostgreSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzurePostgreSql1",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"db_host": {
+							"value": "@dataset().db_host",
+							"type": "Expression"
+						},
+						"db_name": {
+							"value": "@dataset().db_name",
+							"type": "Expression"
+						},
+						"db_username": {
+							"value": "@dataset().db_username",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"db_host": {
+						"type": "String"
+					},
+					"db_name": {
+						"type": "String"
+					},
+					"db_username": {
+						"type": "String"
+					},
+					"output_table": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzurePostgreSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"table": {
+						"value": "@dataset().output_table",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzurePostgreSql1')]"
+			]
 		}
 	]
 }

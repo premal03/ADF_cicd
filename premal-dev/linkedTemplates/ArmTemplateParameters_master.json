@@ -11,6 +11,9 @@
 		"AzureBlobStorage2Dev_connectionString": {
 			"value": ""
 		},
+		"AzurePostgreSql1_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},

@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2Dev'"
 		},
+		"AzurePostgreSql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -47,6 +51,9 @@
 					},
 					"AzureBlobStorage2Dev_connectionString": {
 						"value": "[parameters('AzureBlobStorage2Dev_connectionString')]"
+					},
+					"AzurePostgreSql1_connectionString": {
+						"value": "[parameters('AzurePostgreSql1_connectionString')]"
 					}
 				}
 			},
