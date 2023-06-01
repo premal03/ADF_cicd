@@ -46,7 +46,8 @@ jobs:
       - name: Download ARM template
         uses: actions/download-artifact@v3
         with:
-          name: adf-armtemplate
+          name: ARMTemplateForFactory.json
+          path: ./premal-dev/
 
       - name: Deploy resources
         uses: Azure/data-factory-deploy-action@v1.2.0
