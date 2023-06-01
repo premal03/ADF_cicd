@@ -13,6 +13,10 @@
 			"db_password": {
 				"type": "string",
 				"value": "Prash@131"
+			},
+			"db_host": {
+				"type": "string",
+				"value": "data-analytics-test.postgres.database.azure.com"
 			}
 		}
 	},
