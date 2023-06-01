@@ -11,6 +11,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          path: ./premal-dev
+
+      - name: Set root directory
+        run: cd ./premal-dev
+
+      - name: Run a command in the new root directory
+        run: |
+          # Run commands in the new root directory
+          echo "Working directory: $(pwd)"
 
       - name: Validate ARM template
         uses: Azure/data-factory-validate-action@v1.1.5
