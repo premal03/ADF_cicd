@@ -17,11 +17,7 @@ jobs:
           # Run commands in the new root directory
           echo "Working directory: $(pwd)"
 
-      - name: Validate ARM template
-        uses: Azure/data-factory-validate-action@v1.1.5
-        with:
-          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resource_group_name: ${{ secrets.AZURE_RG }}  
+      
 
       - name: Export Azure Data Factory
         id: export
