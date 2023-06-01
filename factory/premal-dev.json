@@ -1,5 +1,13 @@
 {
 	"name": "premal-dev",
+	"properties": {
+		"globalParameters": {
+			"dbname": {
+				"type": "string",
+				"value": "data_project"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
