@@ -64,6 +64,10 @@
 							"db_username": {
 								"value": "@pipeline().globalParameters.db_username",
 								"type": "Expression"
+							},
+							"output_table": {
+								"value": "@pipeline().globalParameters.output_table",
+								"type": "Expression"
 							}
 						}
 					}
