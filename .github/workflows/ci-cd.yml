@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - adf_dev
-defaults:
- run:
-  working-directory: premal-dev
 
 jobs:
   build:
