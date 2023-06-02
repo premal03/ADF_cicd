@@ -15,9 +15,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2Dev'"
 		},
-		"AzurePostgreSql1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://databaseSecretDemo.vault.azure.net/"
+		},
+		"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "dbConntectionString"
 		},
 		"containerUri": {
 			"type": "string",
@@ -52,8 +56,11 @@
 					"AzureBlobStorage2Dev_connectionString": {
 						"value": "[parameters('AzureBlobStorage2Dev_connectionString')]"
 					},
-					"AzurePostgreSql1_connectionString": {
-						"value": "[parameters('AzurePostgreSql1_connectionString')]"
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AzurePostgreSql1_properties_typeProperties_connectionString_secretName')]"
 					}
 				}
 			},

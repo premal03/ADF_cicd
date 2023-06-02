@@ -11,8 +11,11 @@
 		"AzureBlobStorage2Dev_connectionString": {
 			"value": ""
 		},
-		"AzurePostgreSql1_connectionString": {
-			"value": ""
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://databaseSecretDemo.vault.azure.net/"
+		},
+		"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
+			"value": "dbConntectionString"
 		}
 	}
 }

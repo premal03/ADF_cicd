@@ -15,9 +15,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2Dev'"
 		},
-		"AzurePostgreSql1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://databaseSecretDemo.vault.azure.net/"
+		},
+		"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "dbConntectionString"
 		}
 	},
 	"variables": {
@@ -168,22 +172,10 @@
 								"referenceName": "AzurePostgreSqlTable1",
 								"type": "DatasetReference",
 								"parameters": {
-									"db_host": {
-										"value": "@pipeline().parameters.db_host",
-										"type": "Expression"
-									},
-									"db_name": {
-										"value": "@pipeline().parameters.db_name",
-										"type": "Expression"
-									},
-									"db_username": {
-										"value": "@pipeline().parameters.db_username",
-										"type": "Expression"
-									},
-									"output_table": {
-										"value": "@pipeline().parameters.output_table",
-										"type": "Expression"
-									}
+									"db_host": "sd",
+									"db_name": "dsf",
+									"db_username": "dsf",
+									"output_table": "dev_envtest"
 								}
 							}
 						]
@@ -210,15 +202,6 @@
 					"cancelAfter": {}
 				},
 				"parameters": {
-					"db_host": {
-						"type": "String"
-					},
-					"db_name": {
-						"type": "String"
-					},
-					"db_username": {
-						"type": "String"
-					},
 					"output_table": {
 						"type": "String"
 					}
@@ -237,21 +220,7 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "AzurePostgreSql1",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"db_host": {
-							"value": "@dataset().db_host",
-							"type": "Expression"
-						},
-						"db_name": {
-							"value": "@dataset().db_name",
-							"type": "Expression"
-						},
-						"db_username": {
-							"value": "@dataset().db_username",
-							"type": "Expression"
-						}
-					}
+					"type": "LinkedServiceReference"
 				},
 				"parameters": {
 					"db_host": {
@@ -384,28 +353,41 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "demo",
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzurePostgreSql1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"parameters": {
-					"db_host": {
-						"type": "String"
-					},
-					"db_name": {
-						"type": "String"
-					},
-					"db_username": {
-						"type": "String"
-					}
-				},
 				"annotations": [],
 				"type": "AzurePostgreSql",
 				"typeProperties": {
-					"connectionString": "[parameters('AzurePostgreSql1_connectionString')]"
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('AzurePostgreSql1_properties_typeProperties_connectionString_secretName')]",
+						"secretVersion": "1b35b0a3285a4ac4949a18192c1f48de"
+					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/default')]",
