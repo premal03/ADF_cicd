@@ -18,30 +18,6 @@
 		"AzurePostgreSql1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
-		},
-		"default_properties_db_name_value": {
-			"type": "string",
-			"defaultValue": "data_project"
-		},
-		"default_properties_db_username_value": {
-			"type": "string",
-			"defaultValue": "sculptsoft"
-		},
-		"default_properties_db_password_value": {
-			"type": "string",
-			"defaultValue": "Prash@131"
-		},
-		"default_properties_db_host_value": {
-			"type": "string",
-			"defaultValue": "data-analytics-test.postgres.database.azure.com"
-		},
-		"default_properties_output_table_value": {
-			"type": "string",
-			"defaultValue": "dev_envtest"
-		},
-		"default_properties_example_value": {
-			"type": "string",
-			"defaultValue": "example"
 		}
 	},
 	"variables": {
@@ -52,32 +28,7 @@
 			"name": "[concat(parameters('factoryName'), '/default')]",
 			"type": "Microsoft.DataFactory/factories/globalparameters",
 			"apiVersion": "2018-06-01",
-			"properties": {
-				"db_name": {
-					"type": "string",
-					"value": "[parameters('default_properties_db_name_value')]"
-				},
-				"db_username": {
-					"type": "string",
-					"value": "[parameters('default_properties_db_username_value')]"
-				},
-				"db_password": {
-					"type": "string",
-					"value": "[parameters('default_properties_db_password_value')]"
-				},
-				"db_host": {
-					"type": "string",
-					"value": "[parameters('default_properties_db_host_value')]"
-				},
-				"output_table": {
-					"type": "string",
-					"value": "[parameters('default_properties_output_table_value')]"
-				},
-				"example": {
-					"type": "string",
-					"value": "[parameters('default_properties_example_value')]"
-				}
-			},
+			"properties": {},
 			"dependsOn": []
 		},
 		{
@@ -402,19 +353,19 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"db_host": {
-										"value": "@pipeline().globalParameters.db_host",
+										"value": "@pipeline().parameters.db_host",
 										"type": "Expression"
 									},
 									"db_name": {
-										"value": "@pipeline().globalParameters.db_name",
+										"value": "@pipeline().parameters.db_name",
 										"type": "Expression"
 									},
 									"db_username": {
-										"value": "@pipeline().globalParameters.db_username",
+										"value": "@pipeline().parameters.db_username",
 										"type": "Expression"
 									},
 									"output_table": {
-										"value": "@pipeline().globalParameters.output_table",
+										"value": "@pipeline().parameters.output_table",
 										"type": "Expression"
 									}
 								}
@@ -425,6 +376,20 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"parameters": {
+					"db_host": {
+						"type": "String"
+					},
+					"db_name": {
+						"type": "String"
+					},
+					"db_username": {
+						"type": "String"
+					},
+					"output_table": {
+						"type": "String"
+					}
 				},
 				"annotations": []
 			},
