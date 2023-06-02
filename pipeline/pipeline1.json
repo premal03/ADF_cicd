@@ -137,7 +137,13 @@
 				"outputs": [
 					{
 						"referenceName": "AzurePostgreSqlTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"db_host": "sd",
+							"db_name": "dsf",
+							"db_username": "dsf",
+							"output_table": "dev_envtest"
+						}
 					}
 				]
 			},
