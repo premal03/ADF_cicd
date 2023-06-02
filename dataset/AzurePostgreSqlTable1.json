@@ -3,21 +3,7 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzurePostgreSql1",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"db_host": {
-					"value": "@dataset().db_host",
-					"type": "Expression"
-				},
-				"db_name": {
-					"value": "@dataset().db_name",
-					"type": "Expression"
-				},
-				"db_username": {
-					"value": "@dataset().db_username",
-					"type": "Expression"
-				}
-			}
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"db_host": {
