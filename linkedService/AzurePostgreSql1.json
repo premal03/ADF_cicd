@@ -22,7 +22,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "dbConntectionString",
-				"secretVersion": "f4ebe02f6d7041a8a2cdc46710c030ca"
+				"secretVersion": "1b35b0a3285a4ac4949a18192c1f48de"
 			}
 		}
 	},
