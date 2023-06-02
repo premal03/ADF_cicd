@@ -140,19 +140,19 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"db_host": {
-								"value": "@pipeline().globalParameters.db_host",
+								"value": "@pipeline().parameters.db_host",
 								"type": "Expression"
 							},
 							"db_name": {
-								"value": "@pipeline().globalParameters.db_name",
+								"value": "@pipeline().parameters.db_name",
 								"type": "Expression"
 							},
 							"db_username": {
-								"value": "@pipeline().globalParameters.db_username",
+								"value": "@pipeline().parameters.db_username",
 								"type": "Expression"
 							},
 							"output_table": {
-								"value": "@pipeline().globalParameters.output_table",
+								"value": "@pipeline().parameters.output_table",
 								"type": "Expression"
 							}
 						}
@@ -160,6 +160,20 @@
 				]
 			}
 		],
+		"parameters": {
+			"db_host": {
+				"type": "String"
+			},
+			"db_name": {
+				"type": "String"
+			},
+			"db_username": {
+				"type": "String"
+			},
+			"output_table": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
