@@ -1,33 +1,5 @@
 {
 	"name": "premal-dev",
-	"properties": {
-		"globalParameters": {
-			"db_name": {
-				"type": "string",
-				"value": "data_project"
-			},
-			"db_username": {
-				"type": "string",
-				"value": "sculptsoft"
-			},
-			"db_password": {
-				"type": "string",
-				"value": "Prash@131"
-			},
-			"db_host": {
-				"type": "string",
-				"value": "data-analytics-test.postgres.database.azure.com"
-			},
-			"output_table": {
-				"type": "string",
-				"value": "dev_envtest"
-			},
-			"example": {
-				"type": "string",
-				"value": "example"
-			}
-		}
-	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
