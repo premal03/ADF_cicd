@@ -12,10 +12,10 @@
 			"value": ""
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"value": "https://databaseSecretDemo.vault.azure.net/"
+			"value": "@{linkedService().keyVaultUrlMain}"
 		},
 		"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
-			"value": "dbConntectionString"
+			"value": "@linkedService().secretName"
 		}
 	}
 }

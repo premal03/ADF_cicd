@@ -17,11 +17,11 @@
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://databaseSecretDemo.vault.azure.net/"
+			"defaultValue": "@{linkedService().keyVaultUrlMain}"
 		},
 		"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
-			"defaultValue": "dbConntectionString"
+			"defaultValue": "@linkedService().secretName"
 		},
 		"containerUri": {
 			"type": "string",

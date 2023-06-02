@@ -17,11 +17,11 @@
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://databaseSecretDemo.vault.azure.net/"
+			"defaultValue": "@{linkedService().keyVaultUrlMain}"
 		},
 		"AzurePostgreSql1_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
-			"defaultValue": "dbConntectionString"
+			"defaultValue": "@linkedService().secretName"
 		}
 	},
 	"variables": {
@@ -67,6 +67,11 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"description": "demo",
+				"parameters": {
+					"keyVaultUrlMain": {
+						"type": "String"
+					}
+				},
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
@@ -156,6 +161,28 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"parameters": {
+					"keyVaultUrlMain": {
+						"type": "String"
+					},
+					"secretName": {
+						"type": "string"
+					},
+					"secretVersion": {
+						"type": "string"
+					},
+					"secret_name": {
+						"type": "String",
+						"defaultValue": "dbConntectionString"
+					},
+					"secret_version": {
+						"type": "String",
+						"defaultValue": "1b35b0a3285a4ac4949a18192c1f48de"
+					},
+					"keyVaultUrl": {
+						"type": "String"
+					}
+				},
 				"annotations": [],
 				"type": "AzurePostgreSql",
 				"typeProperties": {
@@ -163,10 +190,22 @@
 						"type": "AzureKeyVaultSecret",
 						"store": {
 							"referenceName": "AzureKeyVault1",
-							"type": "LinkedServiceReference"
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"keyVaultUrlMain": {
+									"value": "@linkedService().keyVaultUrlMain",
+									"type": "Expression"
+								}
+							}
 						},
-						"secretName": "[parameters('AzurePostgreSql1_properties_typeProperties_connectionString_secretName')]",
-						"secretVersion": "1b35b0a3285a4ac4949a18192c1f48de"
+						"secretName": {
+							"value": "[parameters('AzurePostgreSql1_properties_typeProperties_connectionString_secretName')]",
+							"type": "Expression"
+						},
+						"secretVersion": {
+							"value": "@linkedService().secretVersion",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -181,20 +220,40 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "AzurePostgreSql1",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"keyVaultUrlMain": {
+							"value": "@dataset().keyVaultUrl",
+							"type": "Expression"
+						},
+						"secretName": {
+							"value": "@dataset().secretName",
+							"type": "Expression"
+						},
+						"secretVersion": {
+							"value": "@dataset().secretVersion",
+							"type": "Expression"
+						},
+						"secret_name": "dbConntectionString",
+						"secret_version": "1b35b0a3285a4ac4949a18192c1f48de",
+						"keyVaultUrl": {
+							"value": "@dataset().keyVaultUrl",
+							"type": "Expression"
+						}
+					}
 				},
 				"parameters": {
-					"db_host": {
-						"type": "String"
-					},
-					"db_name": {
-						"type": "String"
-					},
-					"db_username": {
-						"type": "String"
-					},
 					"output_table": {
 						"type": "String"
+					},
+					"keyVaultUrl": {
+						"type": "string"
+					},
+					"secretName": {
+						"type": "string"
+					},
+					"secretVersion": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -355,10 +414,22 @@
 								"referenceName": "AzurePostgreSqlTable1",
 								"type": "DatasetReference",
 								"parameters": {
-									"db_host": "sd",
-									"db_name": "dsf",
-									"db_username": "dsf",
-									"output_table": "dev_envtest"
+									"output_table": {
+										"value": "@pipeline().parameters.output_table",
+										"type": "Expression"
+									},
+									"keyVaultUrl": {
+										"value": "@pipeline().parameters.keyVaultUrlMain",
+										"type": "Expression"
+									},
+									"secretName": {
+										"value": "@pipeline().parameters.secretName",
+										"type": "Expression"
+									},
+									"secretVersion": {
+										"value": "@pipeline().parameters.secretVersion",
+										"type": "Expression"
+									}
 								}
 							}
 						]
@@ -386,6 +457,15 @@
 				},
 				"parameters": {
 					"output_table": {
+						"type": "String"
+					},
+					"keyVaultUrlMain": {
+						"type": "string"
+					},
+					"secretName": {
+						"type": "String"
+					},
+					"secretVersion": {
 						"type": "String"
 					}
 				},
