@@ -2,6 +2,9 @@
 	"name": "AzurePostgreSql1",
 	"properties": {
 		"parameters": {
+			"keyVaultUrl": {
+				"type": "String"
+			},
 			"secret_name": {
 				"type": "String",
 				"defaultValue": "dbConntectionString"
@@ -9,9 +12,6 @@
 			"secret_version": {
 				"type": "String",
 				"defaultValue": "1b35b0a3285a4ac4949a18192c1f48de"
-			},
-			"keyVaultUrl": {
-				"type": "String"
 			}
 		},
 		"annotations": [],
