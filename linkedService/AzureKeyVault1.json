@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://DemoPasswordSecret.vault.azure.net/"
+			"baseUrl": "https://databaseSecretDemo.vault.azure.net/"
 		}
 	}
 }
