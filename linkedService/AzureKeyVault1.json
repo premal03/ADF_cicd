@@ -4,8 +4,7 @@
 		"description": "demo",
 		"parameters": {
 			"keyVaultUrlMain": {
-				"type": "String",
-				"defaultValue": "https://databaseSecretDemo.vault.azure.net/"
+				"type": "String"
 			}
 		},
 		"annotations": [],
