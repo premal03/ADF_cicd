@@ -2,7 +2,7 @@
 	"name": "AzurePostgreSql1",
 	"properties": {
 		"parameters": {
-			"keyVaultUrl": {
+			"keyVaultUrlMain": {
 				"type": "String"
 			},
 			"secretName": {
@@ -18,6 +18,9 @@
 			"secret_version": {
 				"type": "String",
 				"defaultValue": "1b35b0a3285a4ac4949a18192c1f48de"
+			},
+			"keyVaultUrl": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
@@ -29,8 +32,8 @@
 					"referenceName": "AzureKeyVault1",
 					"type": "LinkedServiceReference",
 					"parameters": {
-						"keyVaultUrl": {
-							"value": "@linkedService().keyVaultUrl",
+						"keyVaultUrlMain": {
+							"value": "@linkedService().keyVaultUrlMain",
 							"type": "Expression"
 						}
 					}
