@@ -5,6 +5,12 @@
 			"keyVaultUrl": {
 				"type": "String"
 			},
+			"secretName": {
+				"type": "string"
+			},
+			"secretVersion": {
+				"type": "string"
+			},
 			"secret_name": {
 				"type": "String",
 				"defaultValue": "dbConntectionString"
@@ -30,11 +36,11 @@
 					}
 				},
 				"secretName": {
-					"value": "@linkedService().secret_name",
+					"value": "@linkedService().secretName",
 					"type": "Expression"
 				},
 				"secretVersion": {
-					"value": "@linkedService().secret_version",
+					"value": "@linkedService().secretVersion",
 					"type": "Expression"
 				}
 			}
