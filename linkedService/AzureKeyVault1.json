@@ -1,6 +1,7 @@
 {
 	"name": "AzureKeyVault1",
 	"properties": {
+		"description": "demo",
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
