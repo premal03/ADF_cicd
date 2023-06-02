@@ -3,14 +3,14 @@
 	"properties": {
 		"description": "demo",
 		"parameters": {
-			"keyVaultUrl": {
+			"keyVaultUrlMain": {
 				"type": "String"
 			}
 		},
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "@{linkedService().keyVaultUrl}"
+			"baseUrl": "@{linkedService().keyVaultUrlMain}"
 		}
 	}
 }
