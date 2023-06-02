@@ -3,20 +3,40 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzurePostgreSql1",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"keyVaultUrlMain": {
+					"value": "@dataset().keyVaultUrl",
+					"type": "Expression"
+				},
+				"secretName": {
+					"value": "@dataset().secretName",
+					"type": "Expression"
+				},
+				"secretVersion": {
+					"value": "@dataset().secretVersion",
+					"type": "Expression"
+				},
+				"secret_name": "dbConntectionString",
+				"secret_version": "1b35b0a3285a4ac4949a18192c1f48de",
+				"keyVaultUrl": {
+					"value": "@dataset().keyVaultUrl",
+					"type": "Expression"
+				}
+			}
 		},
 		"parameters": {
-			"db_host": {
-				"type": "String"
-			},
-			"db_name": {
-				"type": "String"
-			},
-			"db_username": {
-				"type": "String"
-			},
 			"output_table": {
 				"type": "String"
+			},
+			"keyVaultUrl": {
+				"type": "string"
+			},
+			"secretName": {
+				"type": "string"
+			},
+			"secretVersion": {
+				"type": "string"
 			}
 		},
 		"annotations": [],

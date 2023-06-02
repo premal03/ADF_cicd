@@ -139,10 +139,22 @@
 						"referenceName": "AzurePostgreSqlTable1",
 						"type": "DatasetReference",
 						"parameters": {
-							"db_host": "sd",
-							"db_name": "dsf",
-							"db_username": "dsf",
-							"output_table": "dev_envtest"
+							"output_table": {
+								"value": "@pipeline().parameters.output_table",
+								"type": "Expression"
+							},
+							"keyVaultUrl": {
+								"value": "@pipeline().parameters.keyVaultUrlMain",
+								"type": "Expression"
+							},
+							"secretName": {
+								"value": "@pipeline().parameters.secretName",
+								"type": "Expression"
+							},
+							"secretVersion": {
+								"value": "@pipeline().parameters.secretVersion",
+								"type": "Expression"
+							}
 						}
 					}
 				]
@@ -166,6 +178,15 @@
 		],
 		"parameters": {
 			"output_table": {
+				"type": "String"
+			},
+			"keyVaultUrlMain": {
+				"type": "string"
+			},
+			"secretName": {
+				"type": "String"
+			},
+			"secretVersion": {
 				"type": "String"
 			}
 		},
