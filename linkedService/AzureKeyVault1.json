@@ -2,10 +2,16 @@
 	"name": "AzureKeyVault1",
 	"properties": {
 		"description": "demo",
+		"parameters": {
+			"keyVaultUrl": {
+				"type": "String",
+				"defaultValue": "https://databaseSecretDemo.vault.azure.net/"
+			}
+		},
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://databaseSecretDemo.vault.azure.net/"
+			"baseUrl": "@{linkedService().keyVaultUrl}"
 		}
 	}
 }
