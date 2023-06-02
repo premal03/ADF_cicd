@@ -19,6 +19,30 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzurePostgreSql1'"
 		},
+		"default_properties_db_name_value": {
+			"type": "string",
+			"defaultValue": "data_project"
+		},
+		"default_properties_db_username_value": {
+			"type": "string",
+			"defaultValue": "sculptsoft"
+		},
+		"default_properties_db_password_value": {
+			"type": "string",
+			"defaultValue": "Prash@131"
+		},
+		"default_properties_db_host_value": {
+			"type": "string",
+			"defaultValue": "data-analytics-test.postgres.database.azure.com"
+		},
+		"default_properties_output_table_value": {
+			"type": "string",
+			"defaultValue": "dev_envtest"
+		},
+		"default_properties_example_value": {
+			"type": "string",
+			"defaultValue": "example"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -54,6 +78,24 @@
 					},
 					"AzurePostgreSql1_connectionString": {
 						"value": "[parameters('AzurePostgreSql1_connectionString')]"
+					},
+					"default_properties_db_name_value": {
+						"value": "[parameters('default_properties_db_name_value')]"
+					},
+					"default_properties_db_username_value": {
+						"value": "[parameters('default_properties_db_username_value')]"
+					},
+					"default_properties_db_password_value": {
+						"value": "[parameters('default_properties_db_password_value')]"
+					},
+					"default_properties_db_host_value": {
+						"value": "[parameters('default_properties_db_host_value')]"
+					},
+					"default_properties_output_table_value": {
+						"value": "[parameters('default_properties_output_table_value')]"
+					},
+					"default_properties_example_value": {
+						"value": "[parameters('default_properties_example_value')]"
 					}
 				}
 			},
