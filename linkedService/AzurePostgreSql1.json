@@ -1,6 +1,16 @@
 {
 	"name": "AzurePostgreSql1",
 	"properties": {
+		"parameters": {
+			"secret_name": {
+				"type": "String",
+				"defaultValue": "dbConntectionString"
+			},
+			"secret_version": {
+				"type": "String",
+				"defaultValue": "1b35b0a3285a4ac4949a18192c1f48de"
+			}
+		},
 		"annotations": [],
 		"type": "AzurePostgreSql",
 		"typeProperties": {
@@ -8,10 +18,19 @@
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "AzureKeyVault1",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"keyVaultUrl": "https://databaseSecretDemo.vault.azure.net/"
+					}
 				},
-				"secretName": "dbConntectionString",
-				"secretVersion": "1b35b0a3285a4ac4949a18192c1f48de"
+				"secretName": {
+					"value": "@linkedService().secret_name",
+					"type": "Expression"
+				},
+				"secretVersion": {
+					"value": "@linkedService().secret_version",
+					"type": "Expression"
+				}
 			}
 		}
 	}
