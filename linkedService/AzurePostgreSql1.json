@@ -9,6 +9,9 @@
 			"secret_version": {
 				"type": "String",
 				"defaultValue": "1b35b0a3285a4ac4949a18192c1f48de"
+			},
+			"keyVaultUrl": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
@@ -20,7 +23,10 @@
 					"referenceName": "AzureKeyVault1",
 					"type": "LinkedServiceReference",
 					"parameters": {
-						"keyVaultUrl": "https://databaseSecretDemo.vault.azure.net/"
+						"keyVaultUrl": {
+							"value": "@linkedService().keyVaultUrl",
+							"type": "Expression"
+						}
 					}
 				},
 				"secretName": {
