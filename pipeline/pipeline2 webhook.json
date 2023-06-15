@@ -24,6 +24,20 @@
 			{
 				"name": "WebHook1",
 				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://hooks.slack.com/services/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",
+					"method": "POST",
+					"body": {
+						"text": "error "
+					},
+					"timeout": "00:10:00"
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
 				"dependsOn": [
 					{
 						"activity": "Execute Pipeline1",
@@ -34,12 +48,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://hooks.slack.com/services/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",
-					"method": "POST",
-					"body": {
-						"text": "error "
-					},
-					"timeout": "00:10:00"
+					"waitTimeInSeconds": 1
 				}
 			}
 		],
