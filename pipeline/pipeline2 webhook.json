@@ -37,7 +37,7 @@
 					"url": "https://hooks.slack.com/services/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",
 					"method": "POST",
 					"body": {
-						"text": "@activity('Execute Pipeline1').output.pipelineReturnValue"
+						"text": "Error :       @activity('Execute Pipeline1').output.pipelineReturnValue"
 					},
 					"timeout": "00:10:00"
 				}
