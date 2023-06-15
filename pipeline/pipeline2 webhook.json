@@ -42,6 +42,29 @@
 						"secretVersion": "dsf"
 					}
 				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://hooks.slack.com/services/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",
+					"method": "POST",
+					"headers": {
+						"Authorization": "Bearer xoxb-5119172553187-5416414495351-4gGezyDJfx5v9KY6SnxzKI9t"
+					},
+					"body": {
+						"text": "Hello from Azure Data Factory!"
+					}
+				}
 			}
 		],
 		"annotations": []
