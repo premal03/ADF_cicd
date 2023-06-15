@@ -33,6 +33,20 @@
 						"writeMethod": "CopyCommand"
 					},
 					"enableStaging": false,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "AzureBlobStorage1Dev",
+								"type": "LinkedServiceReference"
+							},
+							"path": "output"
+						}
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
