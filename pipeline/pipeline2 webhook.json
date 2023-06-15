@@ -59,11 +59,11 @@
 					"url": "https://slack.com/api/chat.postMessage",
 					"method": "POST",
 					"headers": {
-						"Authorization": "Bearer xoxp-5119172553187-5429805966706-5431281961587-4e48137a6f426385d1f719078a144053"
+						"Authorization": "Bearer xoxp-5119172553187-5429805966706-5431868801570-8243d72261af069138f7dabc42bc858c"
 					},
 					"body": {
 						"text": "H11i I am a bot that can post messages to any public channel.",
-						"channel": "intelliante-data-engineering"
+						"channel": "#intelliante-data-engineering"
 					}
 				}
 			}
