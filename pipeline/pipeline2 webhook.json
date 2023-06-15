@@ -1,0 +1,48 @@
+{
+	"name": "pipeline2 webhook",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipeline1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"output_table": "sads",
+						"keyVaultUrlMain": "dsadsa",
+						"secretName": "sdadas",
+						"secretVersion": "sadasdsad"
+					}
+				}
+			},
+			{
+				"name": "WebHook1",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://hooks.slack.com/services/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",
+					"method": "POST",
+					"body": {
+						"text": "@activity('Execute Pipeline1').error.Message "
+					},
+					"timeout": "00:10:00"
+				}
+			}
+		],
+		"annotations": []
+	}
+}

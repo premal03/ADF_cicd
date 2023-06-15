@@ -188,6 +188,27 @@
 				"typeProperties": {
 					"waitTimeInSeconds": 1
 				}
+			},
+			{
+				"name": "WebHook1",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Copy data 1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://hooks.slack.com/services/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",
+					"method": "POST",
+					"body": {
+						"text": "error "
+					},
+					"timeout": "00:10:00"
+				}
 			}
 		],
 		"parameters": {
