@@ -50,7 +50,7 @@
 						}
 					},
 					"body": {
-						"text": "@activity('Execute Pipeline1').output",
+						"text": "@activity('Execute Pipeline1').output.pipelineReturnValue",
 						"channel": "#intelliante-data-engineering"
 					}
 				}
