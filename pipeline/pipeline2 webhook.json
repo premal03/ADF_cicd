@@ -5,7 +5,14 @@
 			{
 				"name": "WebHook1",
 				"type": "WebHook",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://hooks.slack.com/services/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",
@@ -15,6 +22,25 @@
 					},
 					"timeout": "00:10:00",
 					"disableCertValidation": false
+				}
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipeline1",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"output_table": "dsf",
+						"keyVaultUrlMain": "dfs",
+						"secretName": "df",
+						"secretVersion": "dsf"
+					}
 				}
 			}
 		],
