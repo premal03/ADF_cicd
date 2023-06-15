@@ -56,7 +56,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://hooks.slack.com/services/T053H52G95H/B05D0J3E3G9",
+					"url": "https://hooks.slack.com/services/T053H52G95H/C05C7D0PW07",
 					"method": "POST",
 					"headers": {
 						"Authorization": "Bearer xoxb-5119172553187-5416414495351-4gGezyDJfx5v9KY6SnxzKI9t"
