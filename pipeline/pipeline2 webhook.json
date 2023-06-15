@@ -56,13 +56,14 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://hooks.slack.com/services/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https://hooks.slack.com/services/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https://hooks.slack.com/services/T053H52G95H/B05D0J3E3G9/",
+					"url": "https://slack.com/api/chat.postMessage",
 					"method": "POST",
 					"headers": {
-						"Authorization": "Bearer xoxb-5119172553187-5416414495351-4gGezyDJfx5v9KY6SnxzKI9t"
+						"Authorization": "Bearer xoxp-5119172553187-5429805966706-5431281961587-4e48137a6f426385d1f719078a144053"
 					},
 					"body": {
-						"text": "Hello from Azure Data Factory!"
+						"text": "Hi I am a bot that can post messages to any public channel.",
+						"channel": "intelliante-data-engineering"
 					}
 				}
 			}
