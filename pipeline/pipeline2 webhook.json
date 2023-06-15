@@ -15,7 +15,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://hooks.slack.com/services/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",
+					"url": "https://hooks.slack.com/services/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",
 					"method": "POST",
 					"body": {
 						"text": "error "
