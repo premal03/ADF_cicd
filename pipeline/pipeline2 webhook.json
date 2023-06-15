@@ -3,25 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Execute Pipeline1",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "pipeline1",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"output_table": "sads",
-						"keyVaultUrlMain": "dsadsa",
-						"secretName": "sdadas",
-						"secretVersion": "sadasdsad"
-					}
-				}
-			},
-			{
 				"name": "WebHook1",
 				"type": "WebHook",
 				"dependsOn": [],
@@ -33,22 +14,6 @@
 						"text": "error "
 					},
 					"timeout": "00:10:00"
-				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "Execute Pipeline1",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
 				}
 			}
 		],
