@@ -13,7 +13,8 @@
 					"body": {
 						"text": "error "
 					},
-					"timeout": "00:10:00"
+					"timeout": "00:10:00",
+					"disableCertValidation": true
 				}
 			}
 		],
