@@ -37,7 +37,7 @@
 					"url": "https://hooks.slack.com/services/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",
 					"method": "POST",
 					"body": {
-						"text": "Error"
+						"text": "error "
 					},
 					"timeout": "00:10:00"
 				}
