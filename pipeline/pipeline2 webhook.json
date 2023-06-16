@@ -49,15 +49,17 @@
 							"type": "Expression"
 						}
 					},
-					"body": {
-						"text": "@activity('Execute Pipeline1').output.pipelineReturnValue",
-						"channel": "#intelliante-data-engineering"
-					}
+					"body": "{\"text\":\"@activity('Execute Pipeline1').output.pipelineReturnValue \n + @variables('asd')\",\"channel\":\"#intelliante-data-engineering\"}"
 				}
 			}
 		],
 		"parameters": {
 			"token": {
+				"type": "String"
+			}
+		},
+		"variables": {
+			"asd": {
 				"type": "String"
 			}
 		},
