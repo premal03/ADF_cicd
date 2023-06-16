@@ -86,7 +86,7 @@
 					"body": {
 						"attachments": [
 							{
-								"pretext": "@activity('Execute Pipeline1').output",
+								"pretext": "@activity('Execute Pipeline1').output.pipelineReturnValue",
 								"text": "@activity('Execute Pipeline1').error.Message"
 							}
 						],
