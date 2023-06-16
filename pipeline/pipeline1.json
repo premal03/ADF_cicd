@@ -180,7 +180,7 @@
 					{
 						"activity": "Copy data 1",
 						"dependencyConditions": [
-							"Completed"
+							"Failed"
 						]
 					}
 				],
