@@ -84,7 +84,12 @@
 						}
 					},
 					"body": {
-						"text": "@activity('Execute Pipeline1').error.Message",
+						"attachments": [
+							{
+								"pretext": "@activity('Execute Pipeline1').output",
+								"text": "@activity('Execute Pipeline1').error.Message"
+							}
+						],
 						"channel": "#intelliante-data-engineering"
 					}
 				}
