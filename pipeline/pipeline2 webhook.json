@@ -85,15 +85,6 @@
 					},
 					"body": {
 						"text": "@activity('Execute Pipeline1').output",
-						"blocks": [
-							{
-								"type": "section",
-								"text": {
-									"type": "plain_text",
-									"text": "@activity('Execute Pipeline1').output"
-								}
-							}
-						],
 						"attachments": [
 							{
 								"pretext": "",
