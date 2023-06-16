@@ -84,10 +84,20 @@
 						}
 					},
 					"body": {
-						"attachments": [
+						"blocks": [
 							{
-								"pretext": "@activity('Execute Pipeline1').output.pipelineReturnValue",
-								"text": "@activity('Execute Pipeline1').error.Message"
+								"type": "section",
+								"text": {
+									"type": "plain_text",
+									"text": "@activity('Execute Pipeline1').output"
+								}
+							},
+							{
+								"type": "section",
+								"text": {
+									"type": "plain_text",
+									"text": "@activity('Execute Pipeline1').error.Message"
+								}
 							}
 						],
 						"channel": "#intelliante-data-engineering"
