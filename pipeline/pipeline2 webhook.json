@@ -84,15 +84,8 @@
 						}
 					},
 					"body": {
-						"blocks": [
-							{
-								"type": "section",
-								"text": {
-									"type": "mrkdwn",
-									"text": "This is a multi-line payload.\nYou can add multiple lines using the newline character.\n\nHere's another line."
-								}
-							}
-						]
+						"text": "@activity('Execute Pipeline1').error.Message",
+						"channel": "#intelliante-data-engineering"
 					}
 				}
 			}
