@@ -84,7 +84,7 @@
 						}
 					},
 					"body": {
-						"text": " @activity('Execute Pipeline1').output \n @activity('Execute Pipeline1').error.Message",
+						"text": " @activity('Execute Pipeline1').output",
 						"channel": "#intelliante-data-engineering"
 					}
 				}
