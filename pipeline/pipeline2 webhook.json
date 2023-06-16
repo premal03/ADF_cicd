@@ -28,7 +28,7 @@
 					{
 						"activity": "Execute Pipeline1",
 						"dependencyConditions": [
-							"Failed"
+							"Completed"
 						]
 					}
 				],
