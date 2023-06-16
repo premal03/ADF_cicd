@@ -83,20 +83,7 @@
 							"type": "Expression"
 						}
 					},
-					"body": {
-						"text": "Error while executing below ADF pipeline",
-						"attachments": [
-							{
-								"pretext": "Error while executing below ADF pipeline",
-								"text": "@activity('Execute Pipeline1').output"
-							},
-							{
-								"pretext": "Error Message",
-								"text": "@activity('Execute Pipeline1').error.Message"
-							}
-						],
-						"channel": "#intelliante-data-engineering"
-					}
+					"body": "\n    \"text\" : \"@activity('Execute Pipeline1').output\",\n    \"attachments\": [{\"pretext\": \"\", \"text\": \"@activity('Execute Pipeline1').error.Message\"}],\n    \"channel\": \"#intelliante-data-engineering\"\n}"
 				}
 			}
 		],
