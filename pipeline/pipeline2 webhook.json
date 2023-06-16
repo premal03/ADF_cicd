@@ -87,7 +87,7 @@
 						"text": "Error while executing below ADF pipeline",
 						"attachments": [
 							{
-								"pretext": "",
+								"pretext": "Error while executing below ADF pipeline",
 								"text": "@activity('Execute Pipeline1').output"
 							},
 							{
