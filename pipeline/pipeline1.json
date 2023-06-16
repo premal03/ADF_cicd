@@ -174,40 +174,30 @@
 				]
 			},
 			{
-				"name": "Wait1",
-				"type": "Wait",
+				"name": "Set variable1",
+				"type": "SetVariable",
 				"dependsOn": [
 					{
 						"activity": "Copy data 1",
 						"dependencyConditions": [
-							"Failed"
+							"Completed"
 						]
 					}
 				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 1
-				}
-			},
-			{
-				"name": "WebHook1",
-				"type": "WebHook",
-				"dependsOn": [
-					{
-						"activity": "Copy data 1",
-						"dependencyConditions": [
-							"Failed"
-						]
+					"variableName": "asd",
+					"value": {
+						"value": "@activity('Copy data 1').output",
+						"type": "Expression"
 					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"url": "https://hooks.slack.com/services/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",
-					"method": "POST",
-					"body": {
-						"text": "error "
-					},
-					"timeout": "00:10:00"
 				}
 			}
 		],
@@ -222,6 +212,11 @@
 				"type": "String"
 			},
 			"secretVersion": {
+				"type": "String"
+			}
+		},
+		"variables": {
+			"asd": {
 				"type": "String"
 			}
 		},
