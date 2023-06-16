@@ -49,7 +49,10 @@
 							"type": "Expression"
 						}
 					},
-					"body": "{\"text\":\"@activity('Execute Pipeline1').output.pipelineReturnValue \n + @variables('asd')\",\"channel\":\"#intelliante-data-engineering\"}"
+					"body": {
+						"text": "@activity('Execute Pipeline1').output  @variables('asd')",
+						"channel": "#intelliante-data-engineering"
+					}
 				}
 			}
 		],
