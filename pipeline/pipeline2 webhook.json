@@ -84,10 +84,14 @@
 						}
 					},
 					"body": {
-						"text": "@activity('Execute Pipeline1').output",
+						"text": "Error while executing below ADF pipeline",
 						"attachments": [
 							{
 								"pretext": "",
+								"text": "@activity('Execute Pipeline1').output"
+							},
+							{
+								"pretext": "Error Message",
 								"text": "@activity('Execute Pipeline1').error.Message"
 							}
 						],
