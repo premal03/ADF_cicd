@@ -22,7 +22,7 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "SuccessWeb",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
@@ -56,7 +56,7 @@
 				}
 			},
 			{
-				"name": "Web1_copy1",
+				"name": "Failure Web",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
