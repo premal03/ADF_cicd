@@ -50,7 +50,7 @@
 						}
 					},
 					"body": {
-						"text": "@activity('Execute Pipeline1').output  @variables('asd')",
+						"text": "@variables('asd')",
 						"channel": "#intelliante-data-engineering"
 					}
 				}
